@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDependencyFile>true</GenerateDependencyFile>
@@ -12,20 +12,24 @@
     <Authors>Max Fridberg</Authors>
     <RepositoryUrl>https://github.com/maxfridbe/DotNetTSGenerator</RepositoryUrl>
     <Description>A continuation of the TS.CodeGenerator package providing a console runner of the code generator using MSBuild</Description>
+
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);AddBinariesToContent</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TS.CodeGenerator\TS.CodeGenerator.csproj" />
   </ItemGroup>
 
+  <Target Name="AddBinariesToContent">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(OutputPath)\*.*">
+        <PackagePath>content/TS.CodeGenerator.Console/$(TargetFramework)</PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
   <ItemGroup>
-    <Content Include="build/net10.0/TS.CodeGenerator.Console.targets" PackagePath="build/net10.0/" />
-    <Content Include="bin/Debug/net10.0/*.*">
-      <Pack>true</Pack>
-      <PackageCopyToOutput>false</PackageCopyToOutput>
-      <PackagePath>/content/TS.CodeGenerator.Console/</PackagePath>
-      <Visible>false</Visible>
-    </Content>
+    <Content Include="build\**\*.targets" PackagePath="build/" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <InvocationCommandLine >dotnet "$(MSBuildThisFileDirectory)../../content/TS.CodeGenerator.Console/net8.0/TS.CodeGenerator.Console.dll"</InvocationCommandLine>
+    <InvocationCommandLine >dotnet "$(MSBuildThisFileDirectory)../../content/TS.CodeGenerator.Console/net10.0/TS.CodeGenerator.Console.dll"</InvocationCommandLine>
     <InputDLL>"$(OutputPath)$(AssemblyName).dll"</InputDLL>
     <OutputDTS>"$(AssemblyName).d.ts"</OutputDTS>
     <OverrideSettingsFilePath>"$(MSBuildProjectDirectory)/TSGeneratorSettings.json"</OverrideSettingsFilePath>
