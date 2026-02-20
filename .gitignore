@@ -175,3 +175,4 @@ FakesAssemblies/
 
 /TS/.vs/*
 TS/TS.CodeGenerator.Console/lib.test.a.b.d.ts
+nupkgs/

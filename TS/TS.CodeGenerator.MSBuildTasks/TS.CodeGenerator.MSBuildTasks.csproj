@@ -43,7 +43,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.3.1" PrivateAssets="All" ExcludeAssets="Runtime" />
-    <PackageReference Include="System.Text.Json" Version="6.0.6" PrivateAssets="All" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
