@@ -32,7 +32,7 @@ jobs:
       run: dotnet test TS/TS.sln --configuration Release --no-build --verbosity normal
 
     - name: Pack
-      run: dotnet pack TS/TS.sln --configuration Release --no-build --output nupkgs
+      run: dotnet pack TS/TS.sln --configuration Release --output nupkgs
 
     - name: Upload NuGet packages
       uses: actions/upload-artifact@v4
