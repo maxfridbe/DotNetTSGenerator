@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDependencyFile>true</GenerateDependencyFile>
     <Version>1.0.1.11</Version>
     <Authors>Max Fridberg</Authors>
