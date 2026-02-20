@@ -5,9 +5,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDependencyFile>true</GenerateDependencyFile>
     
-    <AssemblyVersion>1.0.1.10</AssemblyVersion>
-    <FileVersion>1.0.1.10</FileVersion>
-    <Version>1.0.1.10</Version>
+    <AssemblyVersion>1.0.1.11</AssemblyVersion>
+    <FileVersion>1.0.1.11</FileVersion>
+    <Version>1.0.1.11</Version>
     <title>Dotnet TS Generator</title>
     <Description>C# library used to generate d.ts files reflecting the contents of another specified C# library.</Description>
     <PackageId>TS.CodeGenerator</PackageId>
