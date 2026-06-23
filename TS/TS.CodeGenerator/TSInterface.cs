@@ -73,7 +73,11 @@ namespace TS.CodeGenerator
             // }
 
             //methods
-            var methods = ti.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly).Where(x => !x.IsSpecialName);
+            var methods = ti.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
+                .Where(x => !x.IsSpecialName)
+                .Where(x => x.GetCustomAttribute(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute)) == null)
+                .Where(x => !x.Name.Contains('<'))
+                .Where(x => !_isRecordSynthesizedMethod(x, ti));
             Methods = methods.Select(m => new TSMethod(m, _mapType)).ToList();
         }
 
@@ -112,6 +116,29 @@ namespace TS.CodeGenerator
             {
                 tsMethod.Initialize();
             }
+        }
+
+        private static bool _isRecordSynthesizedMethod(MethodInfo method, TypeInfo declaringType)
+        {
+            if (!_isRecord(declaringType))
+                return false;
+
+            switch (method.Name)
+            {
+                case "ToString":
+                case "GetHashCode":
+                case "Equals":
+                case "Deconstruct":
+                case "PrintMembers":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        private static bool _isRecord(TypeInfo ti)
+        {
+            return ti.GetMethod("<Clone>$", BindingFlags.Instance | BindingFlags.Public) != null;
         }
 
         public string ToTSString()

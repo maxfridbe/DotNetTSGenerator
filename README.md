@@ -40,6 +40,19 @@ This is designed to run as a post build step on your *.Contracts.dll.  It will t
 
 Example Output
 --------------
+
+### Classes and Interfaces
+```csharp
+public class Model
+{
+    public string Name { get; set; }
+}
+
+public interface IModelService
+{
+    Model GetModelFromModel(Model aModel, string path);
+}
+```
 ```typescript
 //MYNS.Model
 interface IModel{
@@ -52,5 +65,28 @@ interface IModelService{
 
   //methods
 	GetModelFromModel(aModel:IModel/*Model*/,path:string/*String*/):JQueryPromise<IModel>;
+}
+```
+
+### C# Record Classes
+C# record classes are supported. Compiler-generated members (`<Clone>$`, `Deconstruct`, `Equals`, `GetHashCode`, `ToString`, `PrintMembers`) are automatically filtered out, producing clean interfaces with only the record's declared properties.
+```csharp
+public record Person(string Name, int Age);
+
+public record Employee(string Department, decimal Salary) : Person("", 0);
+```
+```typescript
+//MYNS.Person
+interface IPerson{
+  //properties
+	Name: string; //System.String
+	Age: number; //System.Int32
+}
+
+//MYNS.Employee
+interface IEmployee extends IPerson{
+  //properties
+	Department: string; //System.String
+	Salary: number; //System.Decimal
 }
 ```
